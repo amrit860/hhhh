@@ -9,6 +9,7 @@ const config = require('./configs');
 require('./db');
 app.use(morgan('dev'));
 app.use(cors());
+app.use(express.json());
 
 const API_Route = require('./route/api.route');
 

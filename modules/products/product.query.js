@@ -47,17 +47,23 @@ function map_product_req(product, productDetails) {
         product.offers = typeof (productDetails.offers) === 'string'
             ? productDetails.offers.split(',')
             : productDetails.offers;
-    if (productDetails.discountedItem == 'true') {
-        product.discount = {};
+    if (product.discount || productDetails.discountedItem) {
+        if (!product.discount) {
+            product.discount = {}
+        }
         product.discount.discountedItem = productDetails.discountedItem;
-        product.discount.discountType = productDetails.discountType;
-        product.discount.discount = productDetails.discount;
+        if (productDetails.discountType)
+            product.discount.discountType = productDetails.discountType;
+        if (productDetails.discount)
+            product.discount.discount = productDetails.discount;
+
     }
-    if (productDetails.warrantyItem == 'true') {
+    if (productDetails.warrantyItem) {
         product.warranty = {};
         product.warranty.warrantyItem = productDetails.warrantyItem;
         product.warranty.warrantyPeriod = productDetails.warrantyPeriod;
     }
+
     if (productDetails.reviewPoint && productDetails.reviewMessage) {
         let reviews = {
             point: productDetails.reviewPoint,
@@ -89,6 +95,7 @@ function update(id, data) {
             .exec(function (err, product) {
                 if (err) {
                     return reject(err);
+                    console.log("error in back>>", err);
                 }
                 if (!product) {
                     return reject({

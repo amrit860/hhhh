@@ -9,6 +9,7 @@ function get(req, res, next) {
         .catch(function (err) {
             next(err);
         })
+        console.log("product get>>",res);
 }
 
 function post(req, res, next) {

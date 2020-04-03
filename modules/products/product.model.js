@@ -8,9 +8,9 @@ const reviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     }
-}, {
+})/*, {
     timestamps: true
-})
+})*/
 
 const productSchema = new Schema({
     name: String,
@@ -47,7 +47,8 @@ const productSchema = new Schema({
         warrantyPeriod: String
     },
     offers: [String],
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    // timestamps:true
 });
 
 module.exports = mongoose.model('product', productSchema);
