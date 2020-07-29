@@ -54,8 +54,7 @@ router.post('/login', function (req, res, next) {
 router.post('/register', upload.single('img'), function (req, res, next) {
     console.log('req.file>>>', req.file);
     console.log('req.body>>>', req.body);
-    // console.log('__dirname>>', __dirname);
-    // console.log('process.cwd()', process.cwd());
+
     if (req.fileErr) {
         return next({
             msg: req.fileErr

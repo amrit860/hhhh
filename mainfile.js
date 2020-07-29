@@ -23,7 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.use(express.static('images'));
-app.use('/amrit', express.static(path.join(__dirname, 'images')));
+app.use('/image', express.static(path.join(__dirname, 'uploads')));
 
 
 

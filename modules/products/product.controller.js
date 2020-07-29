@@ -83,7 +83,7 @@ function search(req, res, next) {
                 }
         }
         ProductQuery
-            .find(condition)
+            .find(searchCondition,req.query)
             .then(function (data) {
                 res.status(200).json(data);
             })
@@ -91,6 +91,7 @@ function search(req, res, next) {
                 next(err);
             })
     }
+}
 
 
 
